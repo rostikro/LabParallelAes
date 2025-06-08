@@ -21,10 +21,9 @@ double encrypt_decrypt_parallel(
 {
     double start = omp_get_wtime();
 
-#pragma omp parallel
+#pragma omp parallel for
+    for (int thread_id = 0; thread_id < num_of_threads; thread_id++)
     {
-        int thread_id = omp_get_thread_num();
-
         size_t start_offset = thread_id * chunk_size;
         size_t chunk_size_for_this_threads = chunk_size;
 
