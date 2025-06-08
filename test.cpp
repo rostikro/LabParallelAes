@@ -13,13 +13,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        std::vector<unsigned char> data_to_encrypt;
+        std::vector<unsigned char> data_to_encrypt = read_file_to_buf("../input.dat");
 
-        // Key and IV generation and broadcasting
+        // Key and IV generation
         unsigned char key[AES_BLOCK_LEN];
         unsigned char iv[AES_IV_LEN];
-
-        data_to_encrypt = read_file_to_buf("../input.dat");
 
         RAND_bytes(key, sizeof(key));
         RAND_bytes(iv, sizeof(iv));

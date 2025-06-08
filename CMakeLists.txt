@@ -8,6 +8,8 @@ set(MPI_HOME "C:/Program Files (x86)/Microsoft SDKs/MPI")
 set(MPI_INCLUDE_PATH "${MPI_HOME}/Include")
 set(MPI_STATIC_LIB "${MPI_HOME}/Lib/x64/msmpi.lib")
 
+find_package(OpenMP REQUIRED)
+
 find_package(OpenSSL REQUIRED)
 
 add_executable(mpi mpi.cpp
@@ -26,3 +28,11 @@ add_executable(test test.cpp
         common.h)
 
 target_link_libraries(test PRIVATE OpenSSL::Crypto)
+
+
+add_executable(openmp openmp.cpp
+        common.cpp
+        common.h)
+
+target_link_libraries(openmp PRIVATE OpenMP::OpenMP_CXX)
+target_link_libraries(openmp PRIVATE OpenSSL::Crypto)
